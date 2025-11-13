@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "projects",
     "rest_framework",
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
 ]
 
 MIDDLEWARE = [
@@ -60,7 +62,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-
 ]
 
 ROOT_URLCONF = "drfsimplecrud.urls"
@@ -132,8 +133,8 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -141,3 +142,7 @@ if not DEBUG:
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 APPEND_SLASH = False
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
